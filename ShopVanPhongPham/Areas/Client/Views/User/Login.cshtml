@@ -1,0 +1,106 @@
+﻿@model ShopVanPhongPham.Areas.Client.Models.LoginModel
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Areas/Client/Views/Shared/_Layout.cshtml";
+    var slides = (List<Model.EF.Slide>)ViewBag.Slides;
+}
+
+<style type="text/css">
+    .container {
+        padding: 16px;
+    }
+
+    /* Full-width input fields */
+    input {
+        width: 40%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        display: inline-block;
+        border: none;
+        background: #f1f1f1;
+    }
+
+        input {
+            background-color: #ddd;
+            outline: none;
+        }
+
+    /* Overwrite default styles of hr */
+    hr {
+        border: 1px solid #f1f1f1;
+        margin-bottom: 25px;
+    }
+
+    /* Set a style for the submit/register button */
+    .registerbtn {
+        background-color: #04AA6D;
+        color: white;
+        padding: 16px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        opacity: 0.9;
+    }
+
+        .registerbtn:hover {
+            opacity: 1;
+        }
+
+    /* Add a blue text color to links */
+    a {
+        color: dodgerblue;
+    }
+
+    /* Set a grey background color and center the text of the "sign in" section */
+    .signin {
+        background-color: #f1f1f1;
+        text-align: center;
+    }
+</style>
+<div class="content">
+    @using (Html.BeginForm("Login", "User", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            <h1 style="color:orange; margin-left:210px;">ĐĂNG NHẬP</h1>
+            <hr />
+
+            <div class="form-group">
+                <label class="control-label col-md-2"></label>
+                <div class="col-md-10">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-top: 30px;">
+                @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.name, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.PasswordFor(model => model.password, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" style="background:orange; color:white;" value="Đăng nhập" class="btn btn-default" />
+                    @*<a class="btn btn-facebook" href="/User/LoginFacebook">
+                            <i class="fa fa-facebook"></i>
+                            Đăng nhập bằng Facebook
+                        </a>*@
+                </div>
+            </div>
+        </div>
+    }
+
+
+</div>
+

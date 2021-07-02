@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Slide";
+    Layout = "~/Areas/Client/Views/Shared/_Layout.cshtml";
+    var slides = (List<Model.EF.Slide>)ViewBag.Slides;
+}
+
+<div id="mover">
+    @foreach (var item in slides)
+    {
+        <div class="slide">
+            <div class="slider-img" style="width: 920px;">
+                <a href="@item.link"><img src="~/Assets/Client/images/@item.images" style="width:830px; height: 240px;" alt="learn more" /></a>
+            </div>
+
+            <div class="clear"></div>
+        </div>
+    }
+
+</div>

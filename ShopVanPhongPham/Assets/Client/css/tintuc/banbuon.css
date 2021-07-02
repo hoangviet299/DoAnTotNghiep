@@ -1,0 +1,44 @@
+.s{
+	width: 900px;
+}
+
+.sp{
+	background: blue;
+	width: 400px;
+	font-size: 16px;
+	color: white;
+	height: 40px;
+	margin-left: 5px;
+	line-height: 40px;
+	text-align: center;
+	font-weight: bold;
+	float: left;
+}
+.gioithieu {
+	margin-top: 30px;
+	float: left;
+	width: 890px;
+	height: 180px;
+	border:1px solid #ccc;
+}
+.anhsp{
+	width: 250px;
+	float: left;
+	margin:10px;
+	border-right:1px solid #ccc;
+}
+.anhsp img{
+	width: 200px;
+	height: 150px;
+	margin-left: 20px;
+}
+.thongtinsp h3{
+	font-size: 16px;
+	color: blue;
+}
+.thongtinsp p{
+	font-size: 15px;
+}
+.thongtinsp a:hover h3{
+	color: red;
+}

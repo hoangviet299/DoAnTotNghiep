@@ -1,0 +1,214 @@
+﻿@model List<Model.EF.product>
+@{
+    var slides = (List<Model.EF.Slide>)ViewBag.Slides;
+    ViewBag.Title = "ListProduct";
+    Layout = "~/Areas/Client/Views/Shared/_Layout.cshtml";
+}
+<style type="text/css">
+    .pagination {
+        width: 400px;
+        margin-left: 50px;
+    }
+
+        .pagination a {
+            display: block;
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: background-color .3s;
+        }
+
+            .pagination a.active {
+                background-color: #4CAF50;
+                color: white;
+            }
+
+            .pagination a:hover:not(.active) {
+                background-color: #ddd;
+            }
+</style>
+@section slide{
+    <div class="header_slide">
+        <div class="header_bottom_left">
+            <div class="categories" style="height:290px;">
+                @{ Html.RenderAction("ProductCategory", "Product");}
+            </div>
+        </div>
+        <div class="header_bottom_right">
+            <div class="slider">
+                <div id="slider">
+                    <div id="mover">
+                        @foreach (var item in slides)
+                        {
+                            <div class="slide">
+                                <div class="slider-img" style="width: 920px;">
+                                    <a href="@item.link"><img src="~/Assets/Client/images/@item.images" style="width:830px; height: 240px;" alt="learn more" /></a>
+                                </div>
+
+                                <div class="clear"></div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+}
+<div class="content">
+    <div class="content_top">
+        <div class="heading">
+            <h3>Tất cả sản phẩm</h3>
+        </div>
+        
+        <div class="clear"></div>
+    </div>
+    <div class="section group">
+        @foreach (var item in Model)
+        {
+            var url = "/Client/Product/Detail/" + item.id_product;
+            <div class="grid_1_of_4 images_1_of_4" style="width:184px; float:left; margin-left:10px;">
+                <a href="@url"><img style="width:200px; height:250px;" src="~/Assets/Client/images/@item.images" alt="" /></a>
+                <h2 style="height:24px;">@item.name</h2>
+                <div class="price-details">
+                    <div class="price-number">
+                        <p><span class="rupees">@(item.price.HasValue ? item.price.Value.ToString("N0") : "Liên hệ")</span> đ</p>
+                    </div>
+                    <div class="add-cart">
+                        <h4><a href="/Client/Cart/AddtoCart/@item.id_product">Thêm vào giỏ</a></h4>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+            </div>
+        }
+        <div class="clear"></div>
+        <!--Phân trang-->
+        @if (ViewBag.TotalPage > 1)
+        {
+            var pageDisplay = (int)ViewBag.MaxPage;
+            int totalPage = (int)ViewBag.TotalPage;
+            int currentPage = ((int)ViewBag.Page);
+
+            // Create numeric links
+            var startPageIndex = Math.Max(1, currentPage - pageDisplay / 2);
+            var endPageIndex = Math.Min(totalPage, currentPage + pageDisplay / 2);
+            var link = "/Client/Product/ListProduct/";
+            <nav aria-label="Page navigation example">
+                <div class="pagination">
+                    @if (currentPage > ViewBag.First)
+                    {
+                        <a href="@link?page=@ViewBag.First" title="Trang đầu" class="first"><i class="fa fa-angle-double-left"></i></a>
+
+                        <a href="@link?page=@ViewBag.Prev" title="Trang trước" class="prev"><i class="fa fa-angle-left"></i></a>
+
+
+                    }
+                    @for (int i = startPageIndex; i <= endPageIndex; i++)
+                    {
+                        if (currentPage == i)
+                        {
+
+                            <a href="@link?page=@i" class="active" title="Trang @i">@i</a>
+                        }
+                        else
+                        {
+                            <a href="@link?page=@i" title="Trang @i" class="pos">@i</a>
+                        }
+                    }
+                    @if (currentPage < totalPage)
+                    {
+                        <a href="@link?page=@ViewBag.Next" class="next" title="Trang sau"><i class="fa fa-angle-right"></i></a>
+                        <a href="@link?page=@ViewBag.Last" class="last" title="Trang cuối"><i class="fa fa-angle-double-right"></i></a>
+                    }
+                </div>
+            </nav>
+        }
+        else
+        {
+            <span>
+                Không có bản ghi nào
+            </span>
+        }
+    </div>
+</div>
+@*<div id="main">
+
+        <div id="main_right">
+            <div class="main_right_top">
+                <div class="s">
+                    <div class="sp" style="background:blue;">SẢN PHẨM</div>
+                </div>
+
+                    <ul style="width:920px;">
+                        @foreach (var item in Model)
+                        {
+                            var url = "/Client/Product/Detail/" + item.id_product;
+                            <li class="khungsp">
+
+
+                                <a href="@url"><img class="scale" data-scale="best-fit-down" data-align="center" src="~/Assets/Client/images/@item.images" alt="Ảnh" /></a>
+                                <p>
+                                    <h4 class="tensp" style="margin-top:20px;">@item.name</h4>
+                                    <h4 class="tensp1" style="margin-top:4px;">Giá từ: <b>@item.price </b>VNĐ</h4>
+                                </p>
+                                <p class="ct" style="margin-top:4px;"> <a href="@url">Chi Tiết</a></p>
+                            </li>
+                        }
+                        <div class="clear"></div>
+                        @if (ViewBag.TotalPage > 1)
+                        {
+                            var pageDisplay = (int)ViewBag.MaxPage;
+                            int totalPage = (int)ViewBag.TotalPage;
+                            int currentPage = ((int)ViewBag.Page);
+
+                            var startPageIndex = Math.Max(1, currentPage - pageDisplay / 2);
+                            var endPageIndex = Math.Min(totalPage, currentPage + pageDisplay / 2);
+                            var link = "/Client/Product/ListProduct/";
+                            <nav aria-label="Page navigation example">
+                                <div class="pagination">
+                                    @if (currentPage > ViewBag.First)
+                                    {
+                                        <a href="@link?page=@ViewBag.First" title="Trang đầu" class="first"><i class="fa fa-angle-double-left"></i></a>
+
+                                        <a href="@link?page=@ViewBag.Prev" title="Trang trước" class="prev"><i class="fa fa-angle-left"></i></a>
+
+
+                                    }
+                                    @for (int i = startPageIndex; i <= endPageIndex; i++)
+                                    {
+                                        if (currentPage == i)
+                                        {
+
+                                            <a href="@link?page=@i" class="active" title="Trang @i">@i</a>
+                                        }
+                                        else
+                                        {
+                                            <a href="@link?page=@i" title="Trang @i" class="pos">@i</a>
+                                        }
+                                    }
+                                    @if (currentPage < totalPage)
+                                    {
+                                        <a href="@link?page=@ViewBag.Next" class="next" title="Trang sau"><i class="fa fa-angle-right"></i></a>
+                                        <a href="@link?page=@ViewBag.Last" class="last" title="Trang cuối"><i class="fa fa-angle-double-right"></i></a>
+                                    }
+                                </div>
+                            </nav>
+                        }
+                        else
+                        {
+                            <span>
+                                Không có bản ghi nào
+                            </span>
+                        }
+                    </ul>
+            </div>
+        </div>
+    </div>
+    <div id="qc" style="height:1px;">
+    </div>*@
+

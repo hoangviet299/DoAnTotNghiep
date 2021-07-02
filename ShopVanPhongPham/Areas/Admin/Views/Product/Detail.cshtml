@@ -1,0 +1,139 @@
+﻿@model Model.EF.product
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<style type="text/css">
+    dt {
+        margin-left: 15px;
+    }
+
+    dd {
+        border: 1px solid black;
+        border-color: #d4b0b0;
+        width: 1000px;
+        height: auto;
+        margin-top: 5px;
+        margin-left: 15px;
+        padding-top: 5px;
+        padding-left: 5px;
+        border-radius: 8px;
+    }
+</style>
+@section header{
+    Chi tiết sản phẩm
+}
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        @*<dt>
+            @Html.DisplayNameFor(model => model.category.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.category.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.supplier.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.supplier.name)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.images)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.images)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.sale)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sale)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hot)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hot)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.vieww)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vieww)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.title)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.contentt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contentt)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.created_at)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.created_at)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.updated_at)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.updated_at)
+        </dd>
+*@
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_product }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

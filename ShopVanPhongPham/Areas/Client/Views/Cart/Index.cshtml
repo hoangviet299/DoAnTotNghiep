@@ -1,0 +1,117 @@
+﻿@model ShopVanPhongPham.Areas.Client.Models.CartItem
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Client/Views/Shared/_Layout.cshtml";
+    var slides = (List<Model.EF.Slide>)ViewBag.Slides;
+}
+@section jsFooter{
+
+    <script src="~/Assets/Client/js/controller/cartController.js"></script>
+}
+<style type="text/css">
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 5px;
+    }
+
+        .table tr, td {
+            padding: 8px;
+            border: 1px solid #dee2e6;
+        }
+
+        .table tr {
+            text-align: left;
+        }
+</style>
+@section slide{
+    <div class="header_slide">
+        <div class="header_bottom_left">
+            <div class="categories" style="height:290px;">
+                @{ Html.RenderAction("ProductCategory", "Product");}
+            </div>
+        </div>
+        <div class="header_bottom_right">
+            <div class="slider">
+                <div id="slider">
+                    <div id="mover">
+                        @foreach (var item in slides)
+                        {
+                            <div class="slide">
+                                <div class="slider-img" style="width: 920px;">
+                                    <a href="@item.link"><img src="~/Assets/Client/images/@item.images" style="width:830px; height: 240px;" alt="learn more" /></a>
+                                </div>
+
+                                <div class="clear"></div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+}
+<div class="content">
+    <h2 style="color: blue;">Giỏ Hàng</h2>
+    <div class="section group">
+        @if (Model != null)
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>Mã SP</td>
+                        <td>Tên SP</td>
+                        <td>Ảnh SP</td>
+                        <td>Số lượng</td>
+                        <td>Đơn giá</td>
+                        <td>Thành tiền</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Items)
+                    {
+                        <tr>
+                            <td>@item.Product.id_product</td>
+                            <td>@item.Product.name</td>
+                            <td><img src="~/Assets/Client/images/@item.Product.images" width="100" /></td>
+                            <td>
+                                @using (Html.BeginForm("Update", "Cart"))
+                                {
+                                    <input type="hidden" value="@item.Product.id_product" name="ID_Product" />
+                                    <input type="number" class="Quantity" name="quantity" data-id="@item.Product.id_product" value="@item.Quantity" />
+                                    <input type="submit" value="Update" />
+                                }
+
+                            </td>
+                            <td>@item.Product.price.GetValueOrDefault(0).ToString("N0")</td>
+                            <td>@((item.Product.price.GetValueOrDefault(0) * item.Quantity).ToString("N0"))</td>
+                            <td><a href="/Client/Cart/Remove/@item.Product.id_product">Xoá</a></td>
+                        </tr>
+                    }
+
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="5" style="text-align:right;">Tổng Tiền: @Model.Total_Money()</td>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <button id="btnContinue" class="btn">Tiếp tục mua hàng</button>
+            @*            <button>Cập nhật giỏ hàng</button>
+            *@ <button><a href="/Client/Cart/ClearCart"> Xoá giỏ hàng</a></button>
+            <a href="/Client/Cart/Payment"></a><button id="btnPayment">Thanh toán</button>
+        }
+        else
+        {
+            <span class="alert alert-danger">Chưa có sản phẩm nào trong giỏ hàng</span>
+        }
+
+    </div>
+</div>
+

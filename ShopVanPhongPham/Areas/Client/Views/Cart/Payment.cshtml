@@ -1,0 +1,138 @@
+﻿@model ShopVanPhongPham.Areas.Client.Models.CartItem
+@{
+    ViewBag.Title = "Payment";
+    Layout = "~/Areas/Client/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 5px;
+        }
+
+        .table tr, td {
+            padding: 8px;
+            border: 1px solid #dee2e6;
+        }
+
+        .table tr {
+            text-align: left;
+        
+        }
+        input[type=text][id=lname], select, textarea {
+        width: 100%; /* Full width */
+        padding: 12px; /* Some padding */
+        border: 1px solid #ccc; /* Gray border */
+        border-radius: 4px; /* Rounded borders */
+        box-sizing: border-box; /* Make sure that padding and width stays in place */
+        margin-top: 6px; /* Add a top margin */
+        margin-bottom: 16px; /* Bottom margin */
+        resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+    }
+
+    /* Style the submit button with a specific background color etc */
+        input[type=submit] {
+        background-color: #04AA6D;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        /* When moving the mouse over the submit button, add a darker green color */
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+    /* Add a background color and some padding around the form */
+        .container {
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+        width:50%;
+        margin-top:10px;
+    }
+</style>
+<div class="content">
+    <div class="section group">
+        @if (Model != null)
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>Mã SP</td>
+                        <td>Tên SP</td>
+                        <td>Ảnh SP</td>
+                        <td>Số lượng</td>
+                        <td>Đơn giá</td>
+                        <td>Thành tiền</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Items)
+                    {
+                        <tr>
+                            <td>@item.Product.id_product</td>
+                            <td>@item.Product.name</td>
+                            <td><img src="~/Assets/Client/images/@item.Product.images" width="100" /></td>
+                            <td>
+                                @using (Html.BeginForm("Update", "Cart"))
+                                {
+                                    <input type="hidden" value="@item.Product.id_product" name="ID_Product" />
+                                    <input type="number" class="Quantity" name="quantity" data-id="@item.Product.id_product" value="@item.Quantity" />
+                                    <input type="submit" value="Update" />
+                                }
+
+                            </td>
+                            <td>@item.Product.price.GetValueOrDefault(0).ToString("N0")</td>
+                            <td>@((item.Product.price.GetValueOrDefault(0) * item.Quantity).ToString("N0"))</td>
+                            <td><a href="/Client/Cart/Remove/@item.Product.id_product">Xoá</a></td>
+                        </tr>
+                    }
+
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="5" style="text-align:right;">Tổng Tiền: @Model.Total_Money()</td>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <button id="btnContinue" class="btn">Tiếp tục mua hàng</button>
+@*            <button>Cập nhật giỏ hàng</button>
+*@            <button><a href="/Client/Cart/ClearCart"> Xoá giỏ hàng</a></button>
+            <button id="btnPayment" class="btn">Thanh toán</button>
+        }
+
+    </div>
+    <div class="section group">
+        <div class="col-md-6">
+            @using (Html.BeginForm("Payment", "Cart", FormMethod.Post))
+            {
+                
+                <div class="container">
+                    <form class="contentttt">
+
+                        <label for="fname">Người nhận</label>
+                        <input type="text" id="lname" name="shipName" placeholder="Nhập tên người nhận..">
+
+                        <label for="lname">Số điện thoại</label>
+                        <input type="text" id="lname" name="mobile" placeholder="Nhập số điện thoại..">
+
+                        <label for="lname">Địa chỉ</label>
+                        <input type="text" id="lname" name="address" placeholder="Nhập địa chỉ..">
+
+                        <label for="lname">Mã Khách Hàng</label>
+                        <input type="text" id="lname" name="idcustomer" placeholder="Nhập mã người dùng..">
+                        <button type="submit" class="btn">Gửi đơn hàng</button>
+                    </form>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>
+

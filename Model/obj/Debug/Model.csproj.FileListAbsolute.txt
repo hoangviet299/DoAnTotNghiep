@@ -1,0 +1,16 @@
+C:\Users\Hoang Viet\Desktop\DATN3\ShopVanPhongPham\Model\bin\Debug\Model.dll.config
+C:\Users\Hoang Viet\Desktop\DATN3\ShopVanPhongPham\Model\bin\Debug\Model.dll
+C:\Users\Hoang Viet\Desktop\DATN3\ShopVanPhongPham\Model\bin\Debug\Model.pdb
+C:\Users\Hoang Viet\Desktop\DATN3\ShopVanPhongPham\Model\bin\Debug\EntityFramework.dll
+C:\Users\Hoang Viet\Desktop\DATN3\ShopVanPhongPham\Model\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Hoang Viet\Desktop\DATN3\ShopVanPhongPham\Model\bin\Debug\EntityFramework.xml
+C:\Users\Hoang Viet\Desktop\DATN3\ShopVanPhongPham\Model\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Hoang Viet\Desktop\DATN3\ShopVanPhongPham\Model\obj\Debug\Model.csproj.CoreCompileInputs.cache
+C:\Users\Hoang Viet\Desktop\DATN3\ShopVanPhongPham\Model\obj\Debug\Model.csproj.CopyComplete
+C:\Users\Hoang Viet\Desktop\DATN3\ShopVanPhongPham\Model\obj\Debug\Model.dll
+C:\Users\Hoang Viet\Desktop\DATN3\ShopVanPhongPham\Model\obj\Debug\Model.pdb
+C:\Users\Hoang Viet\Desktop\DATN3\ShopVanPhongPham\Model\bin\Debug\PagedList.dll
+C:\Users\Hoang Viet\Desktop\DATN3\ShopVanPhongPham\Model\bin\Debug\PagedList.Mvc.dll
+C:\Users\Hoang Viet\Desktop\DATN3\ShopVanPhongPham\Model\bin\Debug\PagedList.xml
+C:\Users\Hoang Viet\Desktop\DATN3\ShopVanPhongPham\Model\bin\Debug\PagedList.Mvc.xml
+C:\Users\Hoang Viet\Desktop\DATN3\ShopVanPhongPham\Model\obj\Debug\Model.csprojAssemblyReference.cache

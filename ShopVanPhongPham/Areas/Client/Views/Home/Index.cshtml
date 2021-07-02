@@ -1,0 +1,103 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Client/Views/Shared/_Layout.cshtml";
+    var slides = (List<Model.EF.Slide>)ViewBag.Slides;
+    var listNewProducts = (List<Model.EF.product>)ViewBag.NewProducts;
+    var listFeatureProducts = (List<Model.EF.product>)ViewBag.ListFeatureProducts;
+}
+
+@section slide{
+    <div class="header_slide">
+        <div class="header_bottom_left">
+            <div class="categories" style="height:290px;">
+                @{ Html.RenderAction("ProductCategory", "Product");}
+            </div>
+        </div>
+        <div class="header_bottom_right">
+            <div class="slider">
+                <div id="slider">
+                    <div id="mover">
+                        @foreach (var item in slides)
+                        {
+                            <div class="slide">
+                                <div class="slider-img" style="width: 920px;">
+                                    <a href="@item.link"><img src="~/Assets/Client/images/@item.images" style="width:830px; height: 240px;" alt="learn more" /></a>
+                                </div>
+
+                                <div class="clear"></div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+}
+<div class="content">
+    <div class="content_top">
+
+        <div class="heading">
+            <h3>Sản phẩm hot</h3>
+        </div>
+        <div class="see">
+@*            <p><a href="/Client/Product/ListFeatureProductFull">Xem tất cả</a></p>
+*@        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="section group">
+        @foreach (var item in listFeatureProducts)
+        {
+            var url = "/Client/Product/Detail/" + item.id_product;
+        <div class="grid_1_of_4 images_1_of_4" style="width: 184px;">
+            <a href="@url"><img src="~/Assets/Client/images/@item.images" style="width:200px; height:250px;" alt="@item.name" /></a>
+            <h2 style=" height:30px;">@item.name </h2>
+            <div class="price-details">
+                <div class="price-number">
+                    <p><span class="rupees"><b>@(item.price.HasValue ? item.price.Value.ToString("N0") : "Liên hệ")</b> </span>đ</p>
+                </div>
+                <div class="add-cart">
+                    <h4><a href="/Client/Cart/AddtoCart/@item.id_product">Thêm Vào Giỏ </a></h4>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+        </div>
+        }
+    </div>
+    <div class="content_bottom">
+
+        <div class="heading">
+            <h3>Sản Phẩm Mới</h3>
+        </div>
+        <div class="see">
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="section group">
+        @foreach (var item in listNewProducts)
+        {
+            var url = "/Client/Product/Detail/" + item.id_product;
+        <div class="grid_1_of_4 images_1_of_4" style="width: 184px;">
+            <a href="@url"><img src="~/Assets/Client/images/@item.images" style="width:200px; height:250px;" alt="@item.name" /></a>
+            <h2 style=" height:30px;">@item.name </h2>
+            <div class="price-details">
+                <div class="price-number">
+                    <p><span class="rupees">@(item.price.HasValue ? item.price.Value.ToString("N0") : "Liên hệ")</span>đ</p>
+                </div>
+                <div class="add-cart">
+                    <h4><a href="/Client/Cart/AddtoCart/@item.id_product">Thêm Vào Giỏ </a></h4>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+        </div>
+        }
+    </div>
+
+</div>
+

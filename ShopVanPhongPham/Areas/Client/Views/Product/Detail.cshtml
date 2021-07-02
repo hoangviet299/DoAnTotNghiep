@@ -1,0 +1,118 @@
+﻿@model Model.EF.product
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Areas/Client/Views/Shared/_Layout.cshtml";
+    var category = (Model.EF.category)ViewBag.Category;
+    var relateproducts = (List<Model.EF.product>)ViewBag.RelateProsucts;
+    
+    var supplier = (Model.EF.supplier)ViewBag.supplier;
+}
+
+<div class="content">
+    <div class="content_top">
+        <div class="back-links">
+            <p><a href="/Client/Home">Trang chủ</a> >>>> <a href="#">@category.name</a></p>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="section group">
+        <div class="cont-desc span_1_of_2">
+            <div class="product-details">
+                <div class="grid images_3_of_2">
+                    <div id="container">
+                        <div id="products_example">
+                            <div id="products">
+                                <div class="slides_container">
+                                    <a href="#" target="_self"><img src="~/Assets/Client/images/@Model.images"  style="width:220px; height:280px;"  alt=" " /></a>
+                                   </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="desc span_3_of_2" >
+                    <div style="width: 210px; height:50px;">
+                        <h2>@Model.name</h2>
+                        <h3>Price: <span style="font-weight: bold;" >@(Model.price.HasValue ? Model.price.Value.ToString("N0") : "Liên hệ")đ</span></h3>
+                        
+                    </div>
+                    <div style="width: 210px; height: 140px; font-style: normal;">
+                        <h3> Nhà Sản Xuất: <span style="color: orange;">@supplier.name</span></h3>
+                        <h3 style="margin-top:10px;"> Số điện thoại: <span style="font-weight: bold;">@supplier.phone</span></h3>
+                        <h3 style="margin-top:10px;">  Website: <span style="font-weight: bold;">@supplier.website</span></h3>
+                        <h3 style="margin-top:10px;">@Model.description</h3>
+                    </div>
+                    <div class="share-desc">
+                        
+                        <div class="button"><span><a href="/Client/Cart/AddtoCart/@Model.id_product">Thêm vào giỏ hàng</a></span></div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="wish-list">
+                        
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="product_desc">
+                <div id="horizontalTab">
+                    <ul class="resp-tabs-list">
+                        <h1 style="font-size:160%;">GIỚI THIỆU</h1>
+                        <div class="clear"></div>
+                    </ul>
+                    <div class="resp-tabs-container">
+                        <div class="product-desc" style="font-style: normal;">
+                            @Html.Raw(Model.contentt)
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <script type="text/javascript">
+    $(document).ready(function () {
+        $('#horizontalTab').easyResponsiveTabs({
+            type: 'default', 
+            width: 'auto',
+            fit: true 
+        });
+    });
+            </script>
+            <div class="content_bottom">
+                <div class="heading">
+                    <h3>Sản phẩm liên quan</h3>
+                </div>
+                <div class="see">
+                    <p><a href="#">Xem tất cả</a></p>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="section group">
+                @foreach (var item in relateproducts)
+                        {
+                            var url = "/Client/Product/Detail/" + item.id_product;
+                <div class="grid_1_of_4 images_1_of_4" style="height:240px;">
+                    <a href="@url"><img style="height:170px;" src="~/Assets/Client/images/@item.images" alt=""></a>
+                    <h2 style="height:24px;">@item.name</h2>
+                    <div class="price-details">
+                        <div class="price-number">
+                            <p><span class="rupees">@(item.price.HasValue ? item.price.Value.ToString("N0") : "Liên hệ")</span> đ</p>
+                        </div>
+                        <div class="add-cart">
+                            <h4><a href="/Client/Cart/AddtoCart/@item.id_product">Add vào giỏ</a></h4>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    
+                </div>
+                }
+
+            </div>
+        </div>
+        <div class="rightsidebar span_3_of_1">
+            @{ Html.RenderAction("ProductCategory", "Product");}
+            
+            
+        </div>
+    </div>
+</div>
+

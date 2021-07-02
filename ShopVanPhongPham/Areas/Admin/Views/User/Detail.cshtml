@@ -1,0 +1,147 @@
+﻿@model Model.EF.user
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<style type="text/css">
+    dt {
+        margin-left: 15px;
+    }
+
+    dd {
+        border: 1px solid black;
+        border-color: #d4b0b0;
+        width: 1000px;
+        height: auto;
+        margin-top: 5px;
+        margin-left: 15px;
+        padding-top: 5px;
+        padding-left: 5px;
+        border-radius: 8px;
+    }
+</style>
+@section header{
+    Chi tiết user
+}
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phone)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.avatar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.avatar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.active)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.active)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.confirmName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.confirmName)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.firrstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.firrstName)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.email_verified_at)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email_verified_at)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.address)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.about)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.about)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.remember_token)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.remember_token)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.created_at)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.created_at)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.updated_at)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.updated_at)
+        </dd>*@
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_user }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Client/Views/Shared/_Layout.cshtml";
+    var listTintuc = (List<Model.EF.news>)ViewBag.listTintuc;
+}
+<link href="~/Assets/Client/css/tintuc/banbuon.css" rel="stylesheet" />
+<link href="~/Assets/Client/css/tintuc/sanpham.css" rel="stylesheet" />
+<div id="main">
+
+    <div id="main_right">
+        <div class="main_right_top">
+
+            <div class="s">
+                <div class="sp" style="background:#b81d22; color:white;">TIN TỨC</div>
+            </div>
+            @foreach (var item in listTintuc)
+            {
+                var url = "/Client/TinTuc/Detail/" + item.id_new;
+                <div class="gioithieu">
+                    <p>
+                        <div class="anhsp">
+                            <a href="@url"><img src="~/Assets/Client/images/@item.images1" alt="Ảnh" /></a>
+                        </div>
+                        <div class="thongtinsp">
+                            <a href="@url"><h3>@item.name</h3></a>
+                        </div>
+                    <p style="margin-top:5px;">@item.description</p>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+<div id="qc" style="height:1px;">
+
+</div>
+

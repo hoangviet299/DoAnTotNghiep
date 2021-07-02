@@ -1,0 +1,66 @@
+﻿@model PagedList.IPagedList<Model.EF.Menu>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Danh sách Menu";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section header {
+    Danh sách Menu
+}
+
+<div class="card-body">
+    @using (Html.BeginForm())
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-4" style="float:left">
+                    <input type="text" value="@ViewBag.SearchString" name="searchString" />
+                </div>
+                <div class="col-md-4" style="float:left; margin-left:-200px;">
+                    <button class="btn btn-outline-primary" type="submit">Tìm Kiếm</button>
+                </div>
+
+            </div>
+            <a class="btn btn-primary mt-2 mb-2 ml-3" type="button" href="@Url.Action("Create", "Menu")" style="text-decoration: none; ">
+                Thêm
+            </a>
+        </div>
+    }
+    <div class="table-responsive">
+        <table class="table table-bMenued" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Text</th>
+                    <th>Link</th>
+                    <th>Displayorđer</th>
+                    <th>Id_Menutype</th>
+                    <th width="100px">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>@item.text</td>
+                    <td>@item.link</td>
+                    <td>@item.displayorđer</td>
+                    <td>@item.id_menutype</td>
+                    <td>
+                        @*<a href="@Url.Action("Edit", "Product", new { id = @item.id_Product})"> Sửa</a>*@
+                        <a href="@Url.Action("Edit", "Menu",new { id = item.id_menu })"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                        |
+                        <a href="@Url.Action("Detail", "Menu",new { id = item.id_menu })"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                        |
+                        <a href="@Url.Action("Delete", "Menu",new { id = item.id_menu })"> <i class="fa fa-trash-o" aria-hidden="true"></i></a>
+
+                    </td>
+                </tr>
+                }
+
+            </tbody>
+        </table>
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = @ViewBag.SearchString }))
+    </div>
+</div>

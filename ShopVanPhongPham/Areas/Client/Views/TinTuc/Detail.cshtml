@@ -1,0 +1,30 @@
+﻿@model Model.EF.news
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Areas/Client/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Assets/Client/css/tintuc/sanpham.css" rel="stylesheet" />
+<link href="~/Assets/Client/css/tintuc/tincongty.css" rel="stylesheet" />
+<div id="main">
+    
+    <div id="main_right">
+        <div class="main_right_top">
+            <div class="s">
+                <div class="sp"><h1>@Model.name</h1></div>
+            </div>
+            <div class="gioithieu">
+                <p><h2> @Model.name</h2>
+
+                <p class="huongdan"><img src="~/Assets/Client/images/@Model.images1">
+                <p>@Model.description
+                <p class="huongdan"><img src="~/Assets/Client/images/@Model.images2">
+                <p> @Model.contentt
+            </div>
+
+
+        </div>
+    </div></div>
+    <div id="qc" style="height:1px;">
+
+    </div>
+

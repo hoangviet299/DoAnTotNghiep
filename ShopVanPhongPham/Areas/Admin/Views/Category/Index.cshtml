@@ -1,0 +1,72 @@
+﻿@model PagedList.IPagedList<Model.EF.category>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Danh sách danh mục";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section header {
+    Danh sách danh mục
+}
+
+<div class="card-body">
+    @using (Html.BeginForm())
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-4" style="float:left">
+                    <input type="text" value="@ViewBag.SearchString" name="searchString" />
+                </div>
+                <div class="col-md-4" style="float:left; margin-left:-200px;">
+                    <button class="btn btn-outline-primary" type="submit">Tìm Kiếm</button>
+                </div>
+
+            </div>
+            <a class="btn btn-primary mt-2 mb-2 ml-3" type="button" href="@Url.Action("Create", "Category")" style="text-decoration: none; ">
+                Thêm
+            </a>
+        </div>
+    }
+    <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Icon</th>
+                    <th>Ngày tạo</th>
+                    <th>Ngày sửa</th>
+                    <th width="100px">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.name</td>
+                        <td>@item.icon</td>
+                        <td>@item.created_at</td>
+                        <td>@item.update_at</td>
+                        <td>
+                            @*<a href="@Url.Action("Edit", "Category", new { id = @item.id_Category})"> Sửa</a>*@
+                            <a href="@Url.Action("Edit", "Category",new { id = item.id_category })"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                            |
+                            @*@Ajax.ActionLink("Xóa", "Delete", new { @id = item.id_Category }, new AjaxOptions
+        {
+            Confirm = "Bạn có muốn xóa bản ghi này? ",
+            OnComplete = "$('#row_" + @item.id_Category + "').remove()",
+            HttpMethod = "Delete"
+        })*@
+                            <a href="@Url.Action("Detail", "Category",new { id = item.id_category })"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                            |
+                            <a href="@Url.Action("Delete", "Category",new { id = item.id_category })"> <i class="fa fa-trash-o" aria-hidden="true"></i></a>
+
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = @ViewBag.SearchString }))
+    </div>
+</div>

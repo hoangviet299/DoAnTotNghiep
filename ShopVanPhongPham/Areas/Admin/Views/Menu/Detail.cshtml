@@ -1,0 +1,90 @@
+﻿@model Model.EF.Menu
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<style type="text/css">
+    dt {
+        margin-left: 15px;
+    }
+
+    dd {
+        border: 1px solid black;
+        border-color: #d4b0b0;
+        width: 1000px;
+        height: auto;
+        margin-top: 5px;
+        margin-left: 15px;
+        padding-top: 5px;
+        padding-left: 5px;
+        border-radius: 8px;
+    }
+</style>
+@section header{
+    Chi tiết Menu
+}
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        @*<dt>
+            @Html.DisplayNameFor(model => model.MenuType.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MenuType.name)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.text)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.text)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.link)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.link)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.displayorđer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.displayorđer)
+        </dd>
+        <dt>
+        @Html.DisplayNameFor(model => model.id_menutype)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_menutype)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.target)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.target)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status)
+        </dd>*@
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_menu }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

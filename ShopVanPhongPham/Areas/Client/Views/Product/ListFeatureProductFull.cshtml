@@ -1,0 +1,40 @@
+﻿@model List<Model.EF.product>
+@{
+    ViewBag.Title = "ListFeatureProductFull";
+    Layout = "~/Areas/Client/Views/Shared/_Layout.cshtml";
+}
+<div id="main">
+
+    <div id="main_right">
+        <div class="main_right_top">
+            <div class="s">
+                <div class="sp" style="background:blue;">SẢN PHẨM HOT</div>
+            </div>
+
+            <ul style="width:920px;">
+                @foreach (var item in Model)
+                {
+                    var url = "/Client/Product/Detail/" + item.id_product;
+                    <li class="khungsp">
+
+
+                        <a href="@url"><img class="scale" data-scale="best-fit-down" data-align="center" src="~/Assets/Client/images/@item.images" alt="Ảnh" /></a>
+                        <p>
+                            <h4 class="tensp" style="margin-top:20px;">@item.name</h4>
+                            <h4 class="tensp1" style="margin-top:4px;">Giá từ: <b>@item.price </b>VNĐ</h4>
+                        </p>
+                        <p class="ct" style="margin-top:4px; width: 160px;"> <a href="/Client/Cart/AddItem?productId=@item.id_product&quantity=1">Thêm vào Giỏ Hàng</a></p>
+                    </li>
+                }
+                <div class="clear"></div>
+                <!--Phân trang-->
+                
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="qc" style="height:1px;">
+</div>
+
+
+
